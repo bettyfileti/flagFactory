@@ -1,0 +1,160 @@
+/* -------------------------------------------------------------- */
+/* Base Typography Styles */
+/* -------------------------------------------------------------- */
+
+body{
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-left: 8px;
+}
+
+h2 {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+}
+
+h3 {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+}
+
+h4 {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 15px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+}
+
+h5 {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+}
+
+h6 {
+    font-family: 'Anonymous Pro';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+}
+
+p {
+    font-family: bookmania, serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 8px 0 0 7.75px;
+}
+
+button{
+    /* font-family: bookmania, serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 14px;
+    width: 100px;
+    height: 30px; */
+}
+/* -------------------------------------------------------------- */
+/* CLASSES > ASCII */
+/* -------------------------------------------------------------- */
+
+.ascii-container{
+    text-align: center;
+    /* border: 1px solid red;   */
+    flex-grow: 1;
+}
+
+.ascii-art {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10.99px;
+    line-height: 11px;
+}
+
+.ascii-art-large {
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21.95px;
+    line-height: 22px;
+}
+
+/* -------------------------------------------------------------- */
+/* CLASSES > SECTIONS */
+/* -------------------------------------------------------------- */
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    border: 1px solid black;
+    padding: 8px;
+    margin: 8px 0 8px 0;
+    height: 32px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flag-count-container{
+    background-color: black;
+    padding: 8px;
+    display: none;
+}
+
+.flag-count-container p{
+    font-family: 'Anonymous Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: whitesmoke;
+
+    margin: 0px;
+}
+/* -------------------------------------------------------------- */
+/* IDs */
+/* -------------------------------------------------------------- */
+
+#flag-warehouse{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: gainsboro;
+}
