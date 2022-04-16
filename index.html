@@ -14,28 +14,32 @@
 <body>
     <div class="header">
         <h1>Flag Factory</h1>
-        <div class="flag-count-container">
-            <p> <span id="flag-count">0</span> Flags Made</p>
+        <div class="flags-made-container">
+            <p> <span id="flags-made-count">0</span> Flags Made</p>
         </div>
     </div>
-    <div class = "row">
-        <div>
+    <div class="row">
+        <div class="button-container">
             <div class="button">
-                <button type="button" class = "btn-active" id="make-a-flag">Make a Flag</button>
+                <button type="button" class="active" id="make-a-flag">Make a Flag</button>
             </div>
             <div class="button">
-                <button type="button" class = "btn-hidden" id="make-a-flag-machine">Make a Flag Machine</button>
+                <button type="button" class="hidden" id="make-a-flag-machine">Make a Flag Machine</button>
+            </div>
+            <div class="button">
+                <button type="button" class="hidden" id="sell-a-flag">Sell a Flag</button>
             </div>
         </div>
         <div>
-            <p class = "next-instruction">There must be a faster way.</p>
+            <p class="next-instruction">There must be a faster way.</p>
         </div>
 
     </div>
 
     <div class="row">
-        <div class="ascii-container">
-            <pre aria-label="A blank flag" title="A Beautiful Blank Flag" class="ascii-art">
+        <div>
+            <div class="ascii-container">
+                <pre aria-label="A blank flag" title="A Beautiful Blank Flag" class="ascii-art">
                     ()                   
                     /\                   
                    /\\\                  
@@ -54,9 +58,11 @@
       /             \::/                 
      /               \/                  
                                   </pre>
-        </div>  
-        <div class="ascii-container" id = "flag-warehouse">
-        </div>  
+            </div>
+            <p class = "hidden" id = "flags-sold"><span id = "flags-sold-count">0</span> flags have left the warehouse.</p>
+        </div>
+        <div class="ascii-container" id="flag-warehouse">
+        </div>
     </div>
 
 

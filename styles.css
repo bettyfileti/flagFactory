@@ -123,13 +123,18 @@ p {
     padding: 8px 0 8px 0;
 }
 
-.flag-count-container {
+.button-container {
+    display:flex;
+    gap: 8px;
+}
+
+.flags-made-container {
     background-color: black;
     padding: 8px;
     display: none;
 }
 
-.flag-count-container p {
+.flags-made-container p {
     font-family: 'Anonymous Pro';
     font-style: normal;
     font-weight: 400;
@@ -142,11 +147,11 @@ p {
     margin: 0px;
 }
 
-.btn-active {
+.active {
     display: inline;
 }
 
-.btn-hidden{
+.hidden{
     display: none;
 }
 
