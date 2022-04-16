@@ -2,7 +2,7 @@
 /* Base Typography Styles */
 /* -------------------------------------------------------------- */
 
-body{
+body {
     max-width: 800px;
     margin: auto;
 }
@@ -77,20 +77,11 @@ p {
     margin: 8px 0 0 7.75px;
 }
 
-button{
-    /* font-family: bookmania, serif;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 14px;
-    line-height: 14px;
-    width: 100px;
-    height: 30px; */
-}
 /* -------------------------------------------------------------- */
 /* CLASSES > ASCII */
 /* -------------------------------------------------------------- */
 
-.ascii-container{
+.ascii-container {
     text-align: center;
     /* border: 1px solid red;   */
     flex-grow: 1;
@@ -116,28 +107,29 @@ button{
 /* CLASSES > SECTIONS */
 /* -------------------------------------------------------------- */
 
-.header{
+.header {
     width: 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     border: 1px solid black;
     padding: 8px;
     margin: 8px 0 8px 0;
     height: 32px;
 }
 
-.row{
+.row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 8px 0 8px 0;
 }
 
-.flag-count-container{
+.flag-count-container {
     background-color: black;
     padding: 8px;
     display: none;
 }
 
-.flag-count-container p{
+.flag-count-container p {
     font-family: 'Anonymous Pro';
     font-style: normal;
     font-weight: 400;
@@ -149,12 +141,35 @@ button{
 
     margin: 0px;
 }
+
+.btn-active {
+    display: inline;
+}
+
+.btn-hidden{
+    display: none;
+}
+
+.next-instruction{
+    display: none;
+}
+
 /* -------------------------------------------------------------- */
 /* IDs */
 /* -------------------------------------------------------------- */
 
-#flag-warehouse{
+#flag-warehouse {
+    padding: 16px;
     display: flex;
     flex-wrap: wrap;
     background-color: gainsboro;
+    line-height: 0px;
+}
+
+#flag-warehouse pre {
+    color: black;
+    background-color: ivory;
+    height: 14px;
+    padding-top: 10px;
+    margin: 6px;
 }
