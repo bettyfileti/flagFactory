@@ -132,6 +132,7 @@ p {
 .button-container {
     display:flex;
     gap: 8px;
+    flex-flow: wrap;
 }
 
 .count-container {
@@ -150,6 +151,11 @@ p {
     color: whitesmoke;
 
     margin: 0px;
+}
+
+.instructions{
+    flex-grow: 1;
+    text-align: right;
 }
 
 .active {
