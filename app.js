@@ -1,7 +1,12 @@
 let flagCount = 0;
 let flagsMade = 0;
 let flagsSold = 0;
+let availableFunds = 100;
+let flagCostToMake = 5;
+let flagPrice = 10;
+
 let flagsMadeDisplay = document.getElementById("flags-made-count");
+let availableFundsDisplay = document.getElementById("money-count");
 
 let btn_makeAFlag = document.getElementById("make-a-flag");
 let btn_makeAFlagMachine = document.getElementById("make-a-flag-machine");
@@ -21,6 +26,10 @@ btn_sellAFlag.addEventListener("click", sellAFlag);
 function makeAFlag() {
     flagsMade += 1;
     flagsMadeDisplay.innerHTML = flagsMade;
+
+    availableFunds = availableFunds - flagCostToMake;
+    availableFundsDisplay.innerHTML = convertToMoney(availableFunds);
+
     document.getElementById("flags-made-count-container").style.display = "flex";
     putFlagInWarehouse();
 }
@@ -31,9 +40,7 @@ function makeAFlagMachine(){
     flagMachineStartTime = flagsMade;
     setInterval(function(){ 
         //this code runs every second 
-        flagsMade += 1;
-        flagsMadeDisplay.innerHTML = flagsMade;
-        putFlagInWarehouse();
+        makeAFlag();
     }, 1000);
     nextInstruction.innerHTML = "Yes, that is so much better.";
     btn_makeAFlagMachine.disabled = "true";

@@ -137,7 +137,6 @@ p {
 .count-container {
     background-color: black;
     padding: 8px;
-    display: none;
 }
 
 .count-container p {
