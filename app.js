@@ -8,7 +8,6 @@ let flagCostToMake = 5;
 let flagMachineCostToMake = 100;
 let askMachineCostToMake = 200; 
 
-
 let flagsMadeDisplay = document.getElementById("flags-made-count");
 let availableFundsDisplay = document.getElementById("money-count");
 
@@ -25,6 +24,7 @@ let flagMachineStartTime;
 
 let flagString = "&ensp;[&ensp;]&ensp;";
 let flagWarehouse = document.getElementById("flag-warehouse");
+let emptyShelf = document.getElementById("warehouse-shelf-blank");
 
 btn_makeAFlag.addEventListener("click", makeAFlag);
 btn_makeAFlagMachine.addEventListener("click", makeAFlagMachine);
@@ -53,7 +53,7 @@ function makeAFlagMachine(){
         //this code runs every second 
         makeAFlag();
     }, 1000);
-    nextInstruction.innerHTML = "1 flag per second. So dope.";
+    nextInstruction.innerHTML = "1 flag every second. So dope.";
     btn_makeAFlagMachine.disabled = "true";
 }
 
@@ -75,9 +75,9 @@ function makeAskMachine(){
     setInterval(function(){ 
         //this code runs every second 
         sellAFlag();
-    }, 500);
-
-    nextInstruction.innerHTML = "That thing can sell 2 flags every second."
+    }, 750);
+    buildWarehouseShelves();
+    nextInstruction.innerHTML = "That thing can sell 1 flag every 1 seconds."
     btn_makeAnAskMachine.disabled = "true";
 }
 
@@ -101,10 +101,16 @@ function moneyIsChanged(makingMoney, howMuch){
 
 function warehouseIsChanged(addingFlag){
     //addingFlag true means a flag made. False means a flag sold.
-    if (addingFlag){
-        putFlagInWarehouse();
-    } else if (!addingFlag){
-        removeFlagFromWarehouse();
+
+    if (!askMachineOn){ //if we don't have the ASK machine yet...
+        if (addingFlag){
+            putFlagInWarehouse();
+        } else if (!addingFlag){
+            removeFlagFromWarehouse();
+        }
+    } else {
+        let flagCounter = emptyShelf.getElementsByClassName("flag-count")[0];
+        flagCounter.innerHTML = flagCount;
     }
 
     //If warehouse has flags
@@ -130,7 +136,7 @@ function warehouseIsChanged(addingFlag){
 function putFlagInWarehouse(){
     let newFlag = document.createElement("pre");
     newFlag.ariaLabel = "A flag";
-    newFlag.class = "ascii-art";
+    newFlag.className = "ascii-art icon";
     newFlag.innerHTML = flagString;
     flagWarehouse.append(newFlag);
 }
@@ -138,6 +144,19 @@ function putFlagInWarehouse(){
 function removeFlagFromWarehouse(){
     flagWarehouse.removeChild(flagWarehouse.lastChild);
     flagCount = flagCount - 1;
+}
+
+function buildWarehouseShelves(){
+    //clear out visual of flags in warehouse
+    let flagIcons = document.getElementsByClassName("ascii-art icon");
+    console.log(flagIcons);
+    for (let i = 0; i < flagIcons.length; i++){
+        flagIcons[i].style.display = "none";
+        flagIcons[i].remove();
+    }
+    //turn on the the display for the shelf div
+    emptyShelf.style.display = "inline";    
+    document.getElementById("warehouse-instructions").classList = "active";
 }
 
 //--------------------------------------------------------------
@@ -166,7 +185,7 @@ function makingFlagsIntro(){
             nextInstruction.innerHTML = "Seriously. We're running out of cash...and space in the warehouse."
         }
         if (flagMachineRunTime > 25){
-            nextInstruction.innerHTML = "Maybe we can sell some?"
+            nextInstruction.innerHTML = "Maybe we can sell some of these flags?"
             document.getElementById("flags-sold").style.display = "inline";
             btn_sellAFlag.className = "active";
             sellingFlags = true;
@@ -175,7 +194,6 @@ function makingFlagsIntro(){
 }
 
 function sellingFlagsIntro(){
-    console.log("flagsSold: ", flagsSold);
     if (flagsSold == 4){
         nextInstruction.innerHTML = "Sell, baby, sell.";
     } else if (flagsSold == 8){
@@ -183,6 +201,7 @@ function sellingFlagsIntro(){
     } else if (flagsSold == 13){
         nextInstruction.innerHTML = "a selling machine? like an Automated-Shop-Keeper?";
     } else if (flagsSold == 15){
+        nextInstruction.innerHTML = "Yes, an Automated-Shop-Keeper.";
         document.getElementById("make-an-ask-machine").classList = "active"
     }
 }

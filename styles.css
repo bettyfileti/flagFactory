@@ -133,6 +133,7 @@ p {
     display:flex;
     gap: 8px;
     flex-flow: wrap;
+    max-width: 50%;
 }
 
 .count-container {
@@ -184,12 +185,13 @@ p {
     flex-wrap: wrap;
     background-color: gainsboro;
     line-height: 0px;
+    text-align: center;
 }
 
 #flag-warehouse pre {
     color: black;
     background-color: ivory;
     height: 14px;
-    padding-top: 10px;
-    margin: 6px;
+    padding-top: 2px;
+    margin: 2px;
 }

@@ -14,7 +14,7 @@
 <body>
     <div class="header">
         <h1>Flag Factory</h1>
-        <div class = "container">
+        <div class="container">
 
             <div class="count-container active" id="flags-made-count-container">
                 <p> <span id="flags-made-count">0</span> Flags Made</p>
@@ -25,26 +25,7 @@
         </div>
 
     </div>
-    <div class="row">
-        <div class="button-container">
-            <div class="button">
-                <button type="button" class="active" id="make-a-flag">Make a Flag</button>
-            </div>
-            <div class="button">
-                <button type="button" class="hidden" id="make-a-flag-machine">Make a Flag Machine (-$100)</button>
-            </div>
-            <div class="button">
-                <button type="button" class="hidden" id="sell-a-flag">Sell a Flag (+$10)</button>
-            </div>
-            <div class="button">
-                <button type="button" class="hidden" id="make-an-ask-machine">Make an ASK Machine (-$200)</button>
-            </div>
-        </div>
-        <div class ="instructions">
-            <p class="next-instruction">You are really good at making these!</p>
-        </div>
-
-    </div>
+ 
 
     <div class="row">
         <div>
@@ -69,11 +50,36 @@
      /               \/                  
                                   </pre>
             </div>
-            <p class = "hidden" id = "flags-sold"><span id = "flags-sold-count">0</span> flags have left the warehouse.</p>
+            <p class="hidden" id="flags-sold"><span id="flags-sold-count">0</span> flags have left the warehouse.</p>
         </div>
         <div class="ascii-container" id="flag-warehouse">
-            <p class = "active" id = "warehouse-status">The warehouse is empty.</p>
+            <p class="active" id="warehouse-status">The warehouse is empty.</p>
+            <pre class="warehouse-shelf ascii-art hidden" id="warehouse-shelf-blank" aria-label="A flag">&ensp;[<span class = "flag-content"></span>]&ensp;× <span class = "flag-count"></span>
+            </pre>
+            <p class = "hidden" id = "warehouse-instructions">How clever! The ASK machine has organized the flags onto shelves. Now we can easily track the warehouse inventory.</p>
         </div>
+
+        
+    </div>
+    <div class="row">
+        <div class="button-container">
+            <div class="button">
+                <button type="button" class="active" id="make-a-flag">Make a Flag</button>
+            </div>
+            <div class="button">
+                <button type="button" class="hidden" id="make-a-flag-machine">Make a Flag Machine (-$100)</button>
+            </div>
+            <div class="button">
+                <button type="button" class="hidden" id="sell-a-flag">Sell a Flag (+$10)</button>
+            </div>
+            <div class="button">
+                <button type="button" class="hidden" id="make-an-ask-machine">Make an ASK Machine (-$200)</button>
+            </div>
+        </div>
+        <div class="instructions">
+            <p class="next-instruction">You are really good at making these!</p>
+        </div>
+
     </div>
 
     <script src="app.js"></script>
