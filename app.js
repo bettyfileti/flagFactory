@@ -1,9 +1,12 @@
 let flagCount = 0;
 let flagsMade = 0;
 let flagsSold = 0;
-let availableFunds = 100;
-let flagCostToMake = 5;
+let availableFunds = 250;
+
 let flagPrice = 10;
+let flagCostToMake = 5;
+let flagMachineCostToMake = 100;
+
 
 let flagsMadeDisplay = document.getElementById("flags-made-count");
 let availableFundsDisplay = document.getElementById("money-count");
@@ -23,37 +26,6 @@ btn_makeAFlag.addEventListener("click", makeAFlag);
 btn_makeAFlagMachine.addEventListener("click", makeAFlagMachine);
 btn_sellAFlag.addEventListener("click", sellAFlag);
 
-function makeAFlag() {
-    flagsMade += 1;
-    flagsMadeDisplay.innerHTML = flagsMade;
-
-    availableFunds = availableFunds - flagCostToMake;
-    availableFundsDisplay.innerHTML = convertToMoney(availableFunds);
-
-    document.getElementById("flags-made-count-container").style.display = "flex";
-    putFlagInWarehouse();
-}
-
-function makeAFlagMachine(){
-    console.log("Making a Flag Machine");
-    flagMachineOn = true;
-    flagMachineStartTime = flagsMade;
-    setInterval(function(){ 
-        //this code runs every second 
-        makeAFlag();
-    }, 1000);
-    nextInstruction.innerHTML = "Yes, that is so much better.";
-    btn_makeAFlagMachine.disabled = "true";
-}
-
-function putFlagInWarehouse(){
-    let newFlag = document.createElement("pre");
-    newFlag.ariaLabel = "1 flag";
-    newFlag.class = "ascii-art";
-    newFlag.innerHTML = flagString;
-    flagWarehouse.append(newFlag);
-    flagsMadeIncreased();
-}
 
 function flagsMadeIncreased(){
     if (flagsMade == 4){
@@ -68,13 +40,13 @@ function flagsMadeIncreased(){
     } else if (flagMachineOn){       
         let flagMachineRunTime = flagsMade - flagMachineStartTime;
         if (flagMachineRunTime > 5){
-            nextInstruction.innerHTML = "1 flag per second. So dope."
+            nextInstruction.innerHTML = "Yes. So much better."
         } 
         if (flagMachineRunTime > 15){
-            nextInstruction.innerHTML = "Um...Did you notice the warehouse is getting a little crowded?"
+            nextInstruction.innerHTML = "Um...Did you notice our funds are getting a little low"
         }
         if (flagMachineRunTime > 20){
-            nextInstruction.innerHTML = "We brought you into the Flag Factory family to solve problems (not cause them)."
+            nextInstruction.innerHTML = "Seriously. We're running out of cash...and space in the warehouse."
         }
         if (flagMachineRunTime > 25){
             nextInstruction.innerHTML = "Maybe we can sell some?"
@@ -84,22 +56,82 @@ function flagsMadeIncreased(){
     }
 }
 
+//--------------------------------------------------------------
+
+function makeAFlag() {
+    flagsMade += 1;
+    flagCount += 1;
+    flagsMadeDisplay.innerHTML = flagsMade;
+
+    moneyIsChanged(false, flagCostToMake);
+
+    document.getElementById("flags-made-count-container").style.display = "flex";
+    putFlagInWarehouse();
+}
+
+function makeAFlagMachine(){
+    console.log("Making a Flag Machine");
+    moneyIsChanged(false, flagMachineCostToMake);
+    flagMachineOn = true;
+    flagMachineStartTime = flagsMade;
+    setInterval(function(){ 
+        //this code runs every second 
+        makeAFlag();
+    }, 1000);
+    nextInstruction.innerHTML = "$100 for a machine that makes 1 flag per second. So dope.";
+    btn_makeAFlagMachine.disabled = "true";
+}
+
+
 function sellAFlag(){
     if (!sellingFlags){
         sellingFlags = true;
         document.getElementById("money-count-container").style.display = "inline";
     }
-    console.log("Selling a flag");
     flagsSold += 1;
     document.getElementById("flags-sold-count").innerHTML = flagsSold;
-    let flagProfit = convertToMoney(flagsSold * 5);
-    document.getElementById("money-count").innerHTML = flagProfit;
+    moneyIsChanged(true, flagPrice);
     removeFlagFromWarehouse();
+}
+
+function moneyIsChanged(makingMoney, howMuch){
+    //makingMoney true means adding money. False means losing money.
+    if (makingMoney){
+        availableFunds = availableFunds + howMuch;
+    } else {
+        availableFunds = availableFunds - howMuch;
+    }
+    availableFundsDisplay.innerHTML = convertToMoney(availableFunds);
+
+    if (availableFunds < 0){
+        document.getElementById("money-count-container").classList.add("alert");
+    } else {
+        document.getElementById("money-count-container").classList = "count-container active";
+    }
+}
+
+//--------------------------------------------------------------
+
+function putFlagInWarehouse(){
+    let newFlag = document.createElement("pre");
+    newFlag.ariaLabel = "1 flag";
+    newFlag.class = "ascii-art";
+    newFlag.innerHTML = flagString;
+    flagWarehouse.append(newFlag);
+    if (flagCount == 1){
+        document.getElementById("warehouse-status").classList = "hidden";
+        btn_sellAFlag.disabled = false;
+    }
+    flagsMadeIncreased();
 }
 
 function removeFlagFromWarehouse(){
     flagWarehouse.removeChild(flagWarehouse.lastChild);
     flagCount = flagCount - 1;
+    if (flagCount == 0){
+        document.getElementById("warehouse-status").classList = "active";
+        btn_sellAFlag.disabled = true;
+    }
 }
 
 //--------------------------------------------------------------

@@ -160,6 +160,10 @@ p {
     display: none;
 }
 
+.alert{
+    background-color: brown;
+}
+
 .next-instruction{
     display: none;
 }
