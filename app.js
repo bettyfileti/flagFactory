@@ -46,6 +46,7 @@ function makeAFlag() {
         console.log("empty warehouse + askMachineOn, but trying to make flags");
         //Come back here to fix!
         //Warehouse is empty and ASK machine is off, but flag machine is still on, so it keeps adding a flag in and then selling 2.
+        //The ASK Machine should require a minimum of 5 flags to be in the warehouse in order to run.
     } else {
         flagsMade += 1;
         flagsMadeDisplay.innerHTML = flagsMade;

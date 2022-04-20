@@ -196,3 +196,8 @@ p {
     padding-top: 2px;
     margin: 2px;
 }
+
+#add-image-here {
+    display: flex;
+    flex-wrap: wrap;
+}
