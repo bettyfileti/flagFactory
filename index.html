@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flag Factory</title>
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/suk0chh.css">
+    <link rel="shortcut icon" type="image/png" href="./images/flagFactory_Favicon-01.png"/>
+
 </head>
 
 <body>
@@ -16,18 +18,17 @@
         <h1>Flag Factory</h1>
         <div class="container">
 
-            <div class="count-container active" id="flags-made-count-container">
+            <!-- <div class="count-container active" id="flags-made-count-container">
                 <p> <span id="flags-made-count">0</span> Flags Made</p>
-            </div>
+            </div> -->
             <div class="count-container active" id="money-count-container">
                 <p>$<span id="money-count">250.00</span> Funds</p>
             </div>
         </div>
-
     </div>
- 
+    <div id="narration-container"></div>
 
-    <div class="row">
+    <div class="row rowFactory">
         <div>
             <div class="ascii-container">
                 <pre aria-label="A blank flag" title="A Beautiful Blank Flag" class="ascii-art">
@@ -50,20 +51,9 @@
      /               \/                  
                                   </pre>
             </div>
-            <p class="hidden" id="flags-sold"><span id="flags-sold-count">0</span> flags have left the warehouse.</p>
         </div>
-        <div class="ascii-container" id="flag-warehouse">
-            <p class="active" id="warehouse-status">The warehouse is empty.</p>
-            <pre class="warehouse-shelf ascii-art hidden" id="warehouse-shelf-blank" aria-label="A flag">&ensp;[<span class = "flag-content"></span>]&ensp;× <span class = "flag-count"></span>
-            </pre>
-            <p class = "hidden" id = "warehouse-instructions">How clever! The ASK machine has organized the flags onto shelves. Now we can easily track the warehouse inventory.</p>
-        </div>
-
-        
-    </div>
-    <div class="row">
-        <div class="button-container">
-            <div class="button">
+        <div class="button-container" id = "flagFactory-buttons">
+            <!-- <div class="button">
                 <button type="button" class="active" id="make-a-flag">Make a Flag</button>
             </div>
             <div class="button">
@@ -74,22 +64,38 @@
             </div>
             <div class="button">
                 <button type="button" class="hidden" id="make-an-ask-machine">Make an ASK Machine</button>
-            </div>
+            </div> -->
         </div>
-        <div class="instructions">
-            <p class="next-instruction">You are really good at making these!</p>
-        </div>
-
     </div>
-    <div style = "display: flex; border: 1px dotted grey; margin-top: 300px; padding: 24px">
-        <div class="button" style = "padding-left: 16px">
+
+    <div class="row stats">
+        <p class="active" id="flags-in-warehouse"> Flags in warehouse:<span id="flags-warehouse-count">0</span></p>
+        <p class="hidden" id="flags-made-per-click"> Flags made: <span id="flags-made-rate">1</span> / click</p>
+        <p class="hidden" id="flag-machine-per-sec"> Flag Machine: <span id="flag-machine-rate">0</span> / second</p>
+        <p class="hidden" id="flags-sold-per-click"> Flags sold: <span id="flags-sold-rate">0</span> / click</p>
+        <p class="hidden" id="ask-machine-per-sec"> ASK Machine: <span id="ask-machine-rate">0</span> / second</p>
+    </div>
+
+    <div class="row">
+
+        <div class="ascii-container" id="flags-in-the-world">
+            <p class="active" id="flags-sold"> It is a flagless world.<span id="flags-sold-count"></span></p>
+            <pre class="warehouse-shelf ascii-art hidden" id="warehouse-shelf-blank" aria-label="A flag">&ensp;[<span class = "flag-content"></span>]&ensp;× <span class = "flag-count"></span>
+            </pre>
+            <p class="hidden" id="warehouse-instructions">How clever! The ASK machine has organized the flags onto
+                shelves. Now we can easily track the warehouse inventory.</p>
+        </div>
+    </div>
+
+    <div style="display: flex; border: 1px dotted grey; margin-top: 300px; padding: 24px">
+        <div class="button" style="padding-left: 16px">
             <button type="button" id="give-me-info">Get developer info in console</button>
-            <a href="./index.html">Home</a>
-            <a href="./playground-1.html">Playground 1</a>
-            <a href="./playground-2.html">Playground 2</a>
+
         </div>
     </div>
-
+    <script src="narrations.js"></script>
+    <script src="buttons.js"></script>
+    <script src="stats.js"></script>
     <script src="app.js"></script>
 </body>
 
