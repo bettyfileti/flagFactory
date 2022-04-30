@@ -12,7 +12,7 @@ class Stat {
         this.value = document.getElementById(this.valueID);
     }
 
-    activate() {
+    makeVisible() {
         this.domElement.className = "active";
         this.isHidden = false;
         this.update();

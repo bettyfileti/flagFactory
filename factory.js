@@ -68,7 +68,7 @@ class Factory {
         }, 1000);
     
         addingNarration(new Narration("flagFactory", "1 flag every second. So dope."));
-        stats.find(x => x.id === "flag-machine-per-sec").activate();
+        stats.find(x => x.id === "flag-machine-per-sec").makeVisible();
     }
 
     sellAFlag() {

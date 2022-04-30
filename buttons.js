@@ -55,20 +55,6 @@ class Button {
         }
     }
 
-    // activate(isNowActive){
-
-    //     if (isNowActive){
-    //         this.isActive = true;
-    //         this.btn.className = "active";
-    //         this.btn.disabled = false;
-    //         this.hasBeenStarted = true;
-    //     } else {
-    //         this.isActive = false;
-    //         this.btn.disabled = true;
-    //     }
-
-    // }
-
     updateLabel() {
         if (this.id === "make-a-flag"){
             this.btn.innerHTML = this.label + " (-$" + convertToMoney(flagCostToMake) + ")";

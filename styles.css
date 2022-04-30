@@ -222,6 +222,54 @@ p {
     height: 100vh;
 }
 
+/* ----------- */
+/*  Flag Icons */
+/* ----------- */
+
+.white-flag {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.black-flag {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.red-flag {
+    background-color: red;
+    color: whitesmoke;
+}
+
+.orange-flag {
+    background-color: orange;
+    color: whitesmoke;
+}
+
+.yellow-flag {
+    background-color: yellow;
+    color: black;
+}
+
+.green-flag {
+    background-color: green;
+    color: whitesmoke;
+}
+
+.blue-flag {
+    background-color: blue;
+    color: whitesmoke;
+}
+
+.indigo-flag {
+    background-color: indigo;
+    color: whitesmoke;
+}
+
+.violet-flag {
+    background-color: violet;
+    color: whitesmoke;
+}
 
 /* -------------------------------------------------------------- */
 /* IDs */
@@ -253,12 +301,12 @@ p {
 }
 
 #flags-in-the-world pre {
-    background-color: whitesmoke;
     height: 14px;
     padding-top: 2px;
     margin: 2px;
     border: 1px solid black;
 }
+
 
 #flags-world-status {
     text-align: center;
