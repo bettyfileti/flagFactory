@@ -164,7 +164,7 @@ p {
 }
 
 .count-container {
-    background-color: black;
+    background-color: rgb(60, 60, 70);
     padding: 8px 16px 8px 16px;
 }
 
@@ -176,8 +176,7 @@ p {
     line-height: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: whitesmoke;
-
+    color: rgb(230, 250, 230);
     margin: 0px;
 }
 
@@ -244,22 +243,26 @@ p {
     align-items:flex-start;
 }
 
-#flag-warehouse {
+#flags-in-the-world {
     padding: 16px;
     display: flex;
     flex-wrap: wrap;
-    background-color: gainsboro;
     line-height: 0px;
     text-align: center;
     flex-flow: wrap-reverse;
 }
 
-#flag-warehouse pre {
-    color: black;
-    background-color: ivory;
+#flags-in-the-world pre {
+    background-color: whitesmoke;
     height: 14px;
     padding-top: 2px;
     margin: 2px;
+    border: 1px solid black;
+}
+
+#flags-world-status {
+    text-align: center;
+    width: 100%;
 }
 
 #add-image-here {
@@ -291,5 +294,7 @@ p {
   
   ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: rgba(30, 30, 30); 
+    background-color: rgba(50, 50, 60); 
   }
+
+  

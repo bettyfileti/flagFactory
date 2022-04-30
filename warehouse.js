@@ -17,6 +17,10 @@ class Warehouse {
         this.isEmpty = false;
         this.flagCount++;
         this.stat.update()
+
+        if (!this.isEmpty && factory.sellingFlags){
+            buttons.find(x => x.id === 'sell-a-flag').makeClickable(true);
+        }
     }
 
     removeFlag(){
@@ -25,39 +29,8 @@ class Warehouse {
 
         if (this.flagCount <= 0){
             this.isEmpty = true;
+            buttons.find(x => x.id === 'sell-a-flag').makeClickable(false);
+            //Turn off ASK machine
         }
     }
-
-    // changed(addingFlag) {
-    //     //addingFlag true means a flag made. False means a flag sold.
-
-    //     if (addingFlag) {
-    //         flagsInWarehouse += 1;
-    //         putFlagInWarehouse();
-    //     } else if (!addingFlag) {
-    //         flagsInWarehouse -= 1;
-    //         removeFlagFromWarehouse();
-    //     }
-
-    //     //If warehouse has flags
-    //     if (flagsInWarehouse >= 1) {
-    //         warehouse.isEmpty = false;
-    //         buttons.find(x => x.id === 'sell-a-flag').activate(false);
-    //     }
-
-    //     // //If warehouse is empty
-    //     if (flagsInWarehouse <= 0) {
-    //         warehouseIsEmpty = true;
-    //         flagSelling = false; //HERE
-    //         document.getElementById("warehouse-status").classList = "active";
-    //         buttons.find(x => x.id === 'sell-a-flag').activate(false);
-    //     }
-
-    //     //Intro flow
-    //     if (!sellingFlags) {
-    //         makingFlagsIntro();
-    //     } else {
-    //         sellingFlagsIntro();
-    //     }
-    // }
 }

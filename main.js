@@ -1,9 +1,10 @@
+//--------------------------------------------------------------
+// INITIALIZE
+//--------------------------------------------------------------
+
 let narrations = [];
 let buttons = [];
 let stats = [];
-
-
-//--------------------------------------------------------------
 
 let warehouse = new Warehouse();
 warehouse.initialize();
@@ -14,10 +15,13 @@ money.initialize();
 let factory = new Factory();
 factory.initialize();
 
+let theWorld = new TheWorld();
+theWorld.initialize();
+
 buttons.push(new Button("make-a-flag", factory.makeAFlag, "Make a Flag", "flagFactory"));
-buttons.push(new Button("make-a-flag-machine", factory.makeAFlagMachine, "Make a Flag Machine","flagFactory"));
+buttons.push(new Button("buy-a-flag-machine", factory.buyAFlagMachine, "Buy a Flag Machine","flagFactory"));
 buttons.push(new Button("sell-a-flag", factory.sellAFlag, "Sell a Flag", "flagFactory"));
-buttons.push(new Button("make-an-ask-machine", factory.makeAskMachine, "Make an ASK Machine", "flagFactory"));
+buttons.push(new Button("buy-an-ask-machine", factory.buyAskMachine, "Buy an ASK Machine", "flagFactory"));
 
 
 for (button of buttons){
@@ -25,7 +29,7 @@ for (button of buttons){
     button.updateLabel();
 }
 
-buttons.find(x => x.id === 'make-a-flag').activate(true);
+buttons.find(x => x.id === 'make-a-flag').makeVisible(true);
 
 // stats.push(new Stat("flags-in-warehouse", "flags-warehouse-count"));
 stats.push(new Stat("flags-made-per-click", "flags-made-rate"));
@@ -36,60 +40,6 @@ stats.push(new Stat("ask-machine-per-sec", "ask-machine-rate"));
 for (stat of stats){
     stat.initialize();
 }
-
-let flagString = "&ensp;[&ensp;]&ensp;";
-let emptyShelf = document.getElementById("warehouse-shelf-blank");
-//let flagsInWarehouseElement = emptyShelf.getElementsByClassName("flag-count")[0];
-// let warehouseInstructions = document.getElementById("warehouse-instructions");
-
-//--------------------------------------------------------------
-
-
-//--------------------------------------------------------------
-
-
-// function putFlagInWarehouse() {
-//     // document.getElementById("flags-warehouse-count").innerHTML = flagsInWarehouse;
-
-//     if (askMachineOn) {
-//         // let flagIcons = document.getElementsByClassName("ascii-art icon");
-//         // for (let i = 0; i < flagIcons.length; i++) {
-//         //     flagIcons[i].remove();
-//         // }
-//     } else {
-//         // let newFlag = document.createElement("pre");
-//         // newFlag.ariaLabel = "A flag";
-//         // newFlag.className = "ascii-art icon";
-//         // newFlag.innerHTML = flagString;
-//         // flagWarehouse.append(newFlag);
-//     }
-// }
-
-// function removeFlagFromWarehouse() {
-//     let newFlag = document.createElement("pre");
-//     newFlag.ariaLabel = "A flag";
-//     newFlag.className = "ascii-art icon";
-//     newFlag.innerHTML = flagString;
-//     //flagWarehouse.append(newFlag);
-
-//     if (askMachineOn) {
-//         flagsInWarehouseElement.innerHTML = flagsInWarehouse;
-//     } else {
-//         //flagWarehouse.removeChild(flagWarehouse.lastChild);
-//     }
-// }
-
-// function buildWarehouseShelves() {
-//     //turn on the the display for the shelf div
-//     emptyShelf.style.display = "inline";
-//     warehouseInstructions.classList = "active";
-
-//     //clear out visual of flags in warehouse
-//     let flagIcons = document.getElementsByClassName("ascii-art icon");
-//     for (let i = 0; i < flagIcons.length; i++) {
-//         flagIcons[i].remove();
-//     }
-// }
 
 //--------------------------------------------------------------
 // SEQUENCES
@@ -105,8 +55,9 @@ function makingFlagsIntro() {
         addingNarration(new Narration("flagFactory", "But...it would be nice to automate this.")); 
     } else if (factory.flagsMade === 13) {
         addingNarration(new Narration("flagFactory", "I know. Let's try a machine.")); 
-        buttons.find(x => x.id === 'make-a-flag-machine').updateLabel();
-        buttons.find(x => x.id === 'make-a-flag-machine').activate(true);
+        buttons.find(x => x.id === 'buy-a-flag-machine').updateLabel();
+        buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
+        factory.makeFlagMachineAvailable();
     } else if (factory.flagMachineOn) {
         let flagMachineRunTime = factory.flagsMade - factory.flagMachineStartTime;
         if (flagMachineRunTime === 5) {
@@ -120,7 +71,7 @@ function makingFlagsIntro() {
         }
         if (flagMachineRunTime === 25) {
             addingNarration(new Narration("flagFactory", "Maybe we can sell some of these flags?")); 
-            buttons.find(x => x.id === 'sell-a-flag').activate(true);
+            buttons.find(x => x.id === 'sell-a-flag').makeVisible(true);
             factory.sellingFlags = true;
         }
     }
@@ -135,10 +86,12 @@ function sellingFlagsIntro() {
         addingNarration(new Narration("flagFactory", "a selling machine? like an Automated-Shop-Keeper?")); 
     } else if (factory.flagsSold === 15) {
         addingNarration(new Narration("flagFactory", "Yes, an Automated-Shop-Keeper.")); 
-        document.getElementById("make-an-ask-machine").classList = "active"
+        factory.askMachineAvailable = true;
+        document.getElementById("buy-an-ask-machine").classList = "active"
     }
 }
-
+//--------------------------------------------------------------
+// HELPER FUNCTIONS
 //--------------------------------------------------------------
 
 function addingNarration(thisNarration){
@@ -149,7 +102,6 @@ function addingNarration(thisNarration){
     thisNarration.initialize();
 }
 
-//--------------------------------------------------------------
 
 function convertToMoney(val) {
     return (Math.floor(val * 100).toFixed(0) / 100).toFixed(2);

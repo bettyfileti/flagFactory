@@ -52,38 +52,26 @@
                                   </pre>
             </div>
         </div>
-        <div class="button-container" id = "flagFactory-buttons">
-            <!-- <div class="button">
-                <button type="button" class="active" id="make-a-flag">Make a Flag</button>
-            </div>
-            <div class="button">
-                <button type="button" class="hidden" id="make-a-flag-machine">Make a Flag Machine</button>
-            </div>
-            <div class="button">
-                <button type="button" class="hidden" id="sell-a-flag">Sell a Flag</button>
-            </div>
-            <div class="button">
-                <button type="button" class="hidden" id="make-an-ask-machine">Make an ASK Machine</button>
-            </div> -->
-        </div>
+        <div class="button-container" id = "flagFactory-buttons"></div>
     </div>
 
     <div class="row stats">
-        <p class="active" id="flags-in-warehouse"> Flags in warehouse:<span id="flags-warehouse-count">0</span></p>
-        <p class="hidden" id="flags-made-per-click"> Flags made: <span id="flags-made-rate">1</span> / click</p>
-        <p class="hidden" id="flag-machine-per-sec"> Flag Machine: <span id="flag-machine-rate">0</span> / second</p>
-        <p class="hidden" id="flags-sold-per-click"> Flags sold: <span id="flags-sold-rate">0</span> / click</p>
-        <p class="hidden" id="ask-machine-per-sec"> ASK Machine: <span id="ask-machine-rate">0</span> / second</p>
+        <p class="active" id="flags-in-warehouse"> Warehouse:<span id="flags-warehouse-count">0</span></p>
+        <p class="hidden" id="flags-made-per-click"> Making: +<span id="flags-made-rate">1</span> flag/click</p>
+        <p class="hidden" id="flag-machine-per-sec"> Flag machine:+<span id="flag-machine-rate">0</span> flags/second</p>
+        <p class="hidden" id="flags-sold-per-click"> Selling:-<span id="flags-sold-rate">0</span> flag/click</p>
+        <p class="hidden" id="ask-machine-per-sec"> ASK machine:-<span id="ask-machine-rate">0</span> flags/second</p>
+    </div>
+
+    <div class = "row">
+        <p class="active" id="flags-world-status"> It is a sad, flagless world.<span id="flags-sold-count"></span></p>
     </div>
 
     <div class="row">
 
         <div class="ascii-container" id="flags-in-the-world">
-            <p class="active" id="flags-sold"> It is a sad, flagless world.<span id="flags-sold-count"></span></p>
-            <pre class="warehouse-shelf ascii-art hidden" id="warehouse-shelf-blank" aria-label="A flag">&ensp;[<span class = "flag-content"></span>]&ensp;× <span class = "flag-count"></span>
+            <pre class="in-the-world ascii-art hidden" id="in-the-world-blank" aria-label="A flag">&ensp;[<span class = "flag-content"></span>]&ensp;× <span class = "flag-count"></span>
             </pre>
-            <p class="hidden" id="warehouse-instructions">How clever! The ASK machine has organized the flags onto
-                shelves. Now we can easily track the warehouse inventory.</p>
         </div>
     </div>
 
@@ -98,6 +86,7 @@
     <script src="buttons.js"></script>
     <script src="stats.js"></script>
     <script src="warehouse.js"></script>
+    <script src="the-world.js"></script>
     <script src="money.js"></script>
     <script src="factory.js"></script>
     <script src="main.js"></script>

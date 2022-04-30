@@ -2,10 +2,13 @@ class Factory {
     constructor() {
         this.flagsMade,
         this.flagsSold,
+        this.flagMachineAvailable = false,
         this.flagMachineOn = false,
+        this.flagMachinesBought = 0,
         this.sellingFlags = false,
+        this.askMachineAvailable = false,
         this.askMachineOn = false,
-        this.flagMachineStartTime;
+        this.flagMachineStartTime
     }
 
     initialize() {
@@ -14,6 +17,10 @@ class Factory {
     }
 
     //------
+
+    makeAFlagAvailable(buttonIsAvailable){
+        buttons.find(x => x.id === "make-a-flag").makeClickable(buttonIsAvailable);
+    }
 
     makeAFlag() {
         //Use "factory."" instead of "this." so it affects the global values, instead of the trigger button.
@@ -39,8 +46,20 @@ class Factory {
         }
     }
 
-    makeAFlagMachine(){
-        console.log("Making a Flag Machine");
+    makeFlagMachineAvailable(){
+        console.log("Making Flag Machine Available");
+        if (money.availableFunds >= flagMachineCostToMake) {
+            buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
+            buttons.find(x => x.id === 'buy-a-flag-machine').makeClickable(true);
+        } else {
+            buttons.find(x => x.id === 'buy-a-flag-machine').makeClickable(false);
+        }
+        this.flagMachineAvailable = true;
+    }
+
+    buyAFlagMachine(){
+        console.log("Buying a Flag Machine");
+        factory.flagMachinesBought++;
         money.spendingMoney(flagMachineCostToMake);
         factory.flagMachineOn = true;
         factory.flagMachineStartTime = this.flagsMade;
@@ -49,7 +68,6 @@ class Factory {
         }, 1000);
     
         addingNarration(new Narration("flagFactory", "1 flag every second. So dope."));
-        buttons.find(x => x.id === 'make-a-flag-machine').activate(false);
         stats.find(x => x.id === "flag-machine-per-sec").activate();
     }
 
@@ -65,12 +83,17 @@ class Factory {
     
             warehouse.removeFlag();
             money.makingMoney(flagPrice);
+            theWorld.addFlag();
         }
     }
 
+    makeASKMachineAvailable(){
+        console.log("Making ASK Machine Available");
+    }
 
-    makeAskMachine(){
-        this.askMachineOn = true;
+    buyAskMachine(){
+        console.log("Buying an ASK Machine");
+        factory.askMachineOn = true;
         money.spendingMoney(askMachineCostToMake);
     
         setInterval(function () {
@@ -80,7 +103,7 @@ class Factory {
     
         // buildWarehouseShelves();
         addingNarration(new Narration("flagFactory", "That baby is selling 2 flags every second."));
-        buttons.find(x => x.id === 'make-ask-machine').activate(false);
+        buttons.find(x => x.id === 'make-ask-machine').makeVisible(false);
     }
 
     //------
