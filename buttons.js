@@ -21,6 +21,10 @@ class Button {
         this.btn.addEventListener("click", this.clickFunction);
         this.btn.innerHTML = this.label;
 
+        if (this.id === "make-a-flag"){
+            this.btn.addEventListener("click", factory.makeAFlag);
+        }
+
         let parentElement;
         if (this.narrator === "flagFactory"){
             parentElement = document.getElementById("flagFactory-buttons");
@@ -34,7 +38,7 @@ class Button {
     }
 
     activate(isNowActive){
-        
+
         if (isNowActive){
             this.isActive = true;
             this.btn.className = "active";
@@ -60,83 +64,3 @@ class Button {
     }
 
 }
-
-//--------------------------------------------------------------
-// Main Functions
-//--------------------------------------------------------------
-
-function makeAFlag() {
-    if (warehouseIsEmpty && askMachineOn) {
-        console.log("empty warehouse + askMachineOn, but trying to make flags");
-        //Come back here to fix!
-        //Warehouse is empty and ASK machine is off, but flag machine is still on, so it keeps adding a flag in and then selling 2.
-        //The ASK Machine should require a minimum of 5 flags to be in the warehouse in order to run.
-    } else {
-        flagsMade += 1;
-        //flagsMadeDisplay.innerHTML = flagsMade;
-        //document.getElementById("flags-made-count-container").style.display = "flex";
-        warehouseIsChanged(true);
-        moneyIsChanged(false, flagCostToMake);
-
-        if (flagsMade != flagsInWarehouse + flagsSold) {
-            console.log("Something is not adding up");
-            giveMeInfo();
-        }
-    }
-
-}
-
-//------
-
-function makeAFlagMachine() {
-    console.log("Making a Flag Machine");
-    moneyIsChanged(false, flagMachineCostToMake);
-    flagMachineOn = true;
-    flagMachineStartTime = flagsMade;
-    setInterval(function () {
-        makeAFlag();
-    }, 1000);
-
-    addingNarration(new Narration("flagFactory", "1 flag every second. So dope."));  
-    buttons.find(x => x.id === 'make-a-flag-machine').activate(false);
-    stats.find(x => x.id === "flag-machine-per-sec").activate();
-}
-
-//------
-
-function sellAFlag() {
-    if (warehouseIsEmpty){
-        console.log("ASK machine is off, due to lack of flags.")
-        warehouseInstructions.innerHTML = "The ASK machine is off until you get more flags made."
-    } else {
-        if (!sellingFlags) {
-            sellingFlags = true;
-            document.getElementById("money-count-container").style.display = "inline";
-        }
-        flagsSold += 1;
-    
-        warehouseIsChanged(false);
-        moneyIsChanged(true, flagPrice);
-    }
-}
-
-//------
-
-function makeAskMachine() {
-    askMachineOn = true;
-    moneyIsChanged(false, askMachineCostToMake);
-
-    setInterval(function () {
-        //this code runs every second 
-        sellAFlag();
-    }, 500);
-
-    buildWarehouseShelves();
-    addingNarration(new Narration("flagFactory", "That baby is selling 2 flags every second."));  
-    buttons.find(x => x.id === 'make-ask-machine').activate(false);
-
-}
-
-//--------------------------------------------------------------
-//
-//--------------------------------------------------------------

@@ -20,7 +20,7 @@ class Stat {
 
     update() {
         if (this.id === "flags-in-warehouse"){
-            this.value.innerHTML = flagsInWarehouse;
+            this.value.innerHTML = warehouse.flagCount;
         } else if (this.id === "flags-made-per-click") {
             this.value.innerHTML = flagsPerClick;
         } else if (this.id === "flag-machine-per-sec"){
