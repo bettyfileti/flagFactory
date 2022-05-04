@@ -31,12 +31,12 @@ class Factory {
 
             warehouse.addFlag();
             money.spendingMoney(flagCostToMake);
-
-            if (factory.flagsMade != warehouse.flagCount + factory.flagsSold) {
-                console.log("//------");
-                console.log("Something is not adding up");
-                giveMeInfo();
-            }
+            //TURN THIS ON
+            // if (factory.flagsMade != warehouse.flagCount + factory.flagsSold) {
+            //     console.log("//------");
+            //     console.log("Something is not adding up");
+            //     giveMeInfo();
+            // }
         }
 
         if (!factory.sellingFlags){
