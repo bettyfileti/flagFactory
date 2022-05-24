@@ -39,6 +39,11 @@ function sellingFlagsIntro(){
     console.log("here");
     if (factory.flagsSold === 5){
         addingNarration(new Narration("flagFactory", "Making flags, making money. Making flags, making money."));
+    } else if (factory.flagsSold === 8) {
+        addingNarration(new Narration("flagFactory", "Time to automate."));
+        buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
+        stats.find(x => x.id === 'flag-machine-per-sec').makeVisible(true);
+        factory.flagMachineAvailable = true;
     }
 }
 

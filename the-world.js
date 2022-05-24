@@ -30,9 +30,9 @@ class TheWorld {
     addFlag() {
         let flagWorldStatusElement = document.getElementById("flags-world-status");
         if (factory.flagsSold === 1){
-            flagWorldStatusElement.innerHTML = "WAY TO SELL, MY FRIEND! " + factory.flagsSold + " beautiful flag out in the world:";
+            flagWorldStatusElement.innerHTML = "<p>WAY TO SELL, MY FRIEND!</p> <p class = 'statsType'> " + factory.flagsSold + " beautiful flag out in the world.</p>";
         } else {
-            flagWorldStatusElement.innerHTML = "WAY TO SELL, MY FRIEND! " + factory.flagsSold + " beautiful flags out in the world:";
+            flagWorldStatusElement.innerHTML = "<p>WAY TO SELL, MY FRIEND!</p> <p class = 'statsType'> " + factory.flagsSold + " beautiful flags out in the world.</p>";
         }
         this.flagCount++;
         let newFlag = document.createElement("pre");

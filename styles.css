@@ -139,7 +139,7 @@ p {
 
 .statsRow {
     display: flex;
-    /* padding: 8px; */
+    padding-bottom: 8px;
     padding-top: 4px;
     gap: 4px;
 }
@@ -147,11 +147,11 @@ p {
 
 .stats {
     display: flex;
-    font-size: 12px;
     width: 132px;
 }
 
-.stats > p {
+.statsType {
+    font-size: 10px;
     font-family: Anonymous Pro, monospace;
     text-transform: uppercase;
     margin: 0px;
@@ -332,6 +332,11 @@ p {
     display:flex;
     justify-content:center;
     align-items:flex-start;
+}
+
+#theWorld > .row {
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
 #flags-in-the-world {

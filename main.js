@@ -19,8 +19,8 @@ let theWorld = new TheWorld();
 theWorld.initialize();
 
 buttons.push(new Button("make-a-flag", factory.makeAFlag, "Make a Flag", "flagFactory"));
-buttons.push(new Button("buy-a-flag-machine", factory.buyAFlagMachine, "Buy a Making Machine", "flagFactory"));
 buttons.push(new Button("sell-a-flag", factory.sellAFlag, "Sell a Flag", "flagFactory"));
+buttons.push(new Button("buy-a-flag-machine", factory.buyAFlagMachine, "Buy a Making Machine", "flagFactory"));
 buttons.push(new Button("buy-an-ask-machine", factory.buyAskMachine, "Buy a Selling Machine", "flagFactory"));
 
 
