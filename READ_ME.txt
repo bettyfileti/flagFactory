@@ -1,7 +1,10 @@
 //--------------------------------------------------------------
 // Notes
 //--------------------------------------------------------------
+Sequences vs projects.
 
+Sequences: Should have a start trigger and ending trigger; This way we can close them and ensure they aren't interfering.
+Intro sequence: Triggered by factory.flagCount
 
 
 //--------------------------------------------------------------
