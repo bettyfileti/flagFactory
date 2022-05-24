@@ -3,7 +3,7 @@ class Stat {
         this.id = id,
         this.valueID = valueID,
         this.value,
-        this.isHidden,
+        this.isHidden = true,
         this.domElement
     }
 
@@ -13,7 +13,8 @@ class Stat {
     }
 
     makeVisible() {
-        this.domElement.className = "active";
+        this.domElement.classList.remove("hidden");
+        this.domElement.classList.add("active");
         this.isHidden = false;
         this.update();
     }

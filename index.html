@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/suk0chh.css">
-    <link rel="shortcut icon" type="image/png" href="images/flagFactory_Favicon-01.png"/>
+    <link rel="shortcut icon" type="image/png" href="giimages/flagFactory_Favicon-01.png"/>
 
 </head>
 
@@ -55,12 +55,26 @@
         <div class="button-container" id = "flagFactory-buttons"></div>
     </div>
 
-    <div class="row stats">
+    <div class="row warehouse">
         <p class="active" id="flags-in-warehouse"> Warehouse:<span id="flags-warehouse-count">0</span></p>
-        <p class="hidden" id="flags-made-per-click"> Making: +<span id="flags-made-rate">1</span> flag/click</p>
-        <p class="hidden" id="flag-machine-per-sec"> Flag machine:+<span id="flag-machine-rate">0</span> flags/second</p>
-        <p class="hidden" id="flags-sold-per-click"> Selling:-<span id="flags-sold-rate">0</span> flag/click</p>
-        <p class="hidden" id="ask-machine-per-sec"> ASK machine:-<span id="ask-machine-rate">0</span> flags/second</p>
+    </div>
+    <div class="statsRow">
+        <div class = "stats hidden" id="flags-made-per-click">        
+            <p class = "statsTitle">Making</p>
+            <p class = "statsData"><span id="flags-made-rate">1</span>/click</p>
+        </div>
+        <div class = "stats hidden" id="flags-sold-per-click">
+            <p class = "statsTitle">Selling</span></p>
+            <p class = "statsData"><span id="flags-sold-rate">0</span>/click</p>
+        </div>
+        <div class = "stats hidden" id="flag-machine-per-sec">
+            <p class = "statsTitle">Making machine</span></p>
+            <p class = "statsData"><span id="flag-machine-rate">0</span>/second</p>
+        </div>
+        <div class = "stats hidden" id="ask-machine-per-sec">
+            <p class = "statsTitle">Selling machine</span></p>
+            <p class = "statsData"><span id="ask-machine-rate">0</span>/second</p>
+        </div>
     </div>
 
     <div class = "row">
@@ -89,6 +103,7 @@
     <script src="the-world.js"></script>
     <script src="money.js"></script>
     <script src="factory.js"></script>
+    <script src="projects.js"></script>
     <script src="main.js"></script>
 </body>
 

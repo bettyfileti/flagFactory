@@ -35,7 +35,6 @@ class Money {
             } 
             
             if (factory.flagMachineAvailable && this.availableFunds >= flagMachineCostToMake){
-                //
                 buttons.find(x => x.id === "buy-a-flag-machine").makeClickable(true);
             }
 
@@ -62,7 +61,7 @@ class Money {
             if (this.availableFunds < flagMachineCostToMake) {
                 buttons.find(x => x.id === "buy-a-flag-machine").makeClickable(false);
 
-                if (!factory.flagMachineOn) {
+                if (factory.flagMachineAvailable) {
                     this.youNeedMoney();
                 }
             }
@@ -79,10 +78,12 @@ class Money {
 
     youNeedMoney() {
         let outOfMoneyText = "Time to sell a flag or two. Make some money.";
-        if (narrations[narrations.length - 1].text != outOfMoneyText) {
-            addingNarration(new Narration("flagFactory", outOfMoneyText));
-
-            buttons.find(x => x.id === 'sell-a-flag').makeVisible(true);
+        if (narrations.length > 0){
+            if (narrations[narrations.length - 1].text != outOfMoneyText) {
+                addingNarration(new Narration("flagFactory", outOfMoneyText));
+                buttons.find(x => x.id === 'sell-a-flag').makeVisible(true);
+            }
         }
+
     }
 }

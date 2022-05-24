@@ -13,22 +13,23 @@ class Warehouse {
         stats.push(this.stat);
     }
 
-    addFlag(){
+    addFlag() {
         this.isEmpty = false;
         this.flagCount++;
         this.stat.update()
 
-        if (!this.isEmpty && factory.sellingFlags){
+        if (!this.isEmpty && factory.sellingFlags) {
             buttons.find(x => x.id === 'sell-a-flag').makeClickable(true);
         }
     }
 
-    removeFlag(){
+    removeFlag() {
         this.flagCount = this.flagCount - 1;
         this.stat.update();
 
-        if (this.flagCount <= 0){
+        if (this.flagCount <= 0) {
             this.isEmpty = true;
+            addingNarration(new Narration("flagFactory", "Can't sell what you don't have, buddy. Make a flag."));
             buttons.find(x => x.id === 'sell-a-flag').makeClickable(false);
             //Turn off ASK machine
         }

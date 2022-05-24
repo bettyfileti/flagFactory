@@ -29,7 +29,7 @@ class TheWorld {
 
     addFlag() {
         let flagWorldStatusElement = document.getElementById("flags-world-status");
-        flagWorldStatusElement.innerHTML = "Yes, the beauty that is a flag is meant to be shared with the world."
+        flagWorldStatusElement.innerHTML = "WAY TO SELL, MY FRIEND! Look at these flags, out in the world:"
         this.flagCount++;
         let newFlag = document.createElement("pre");
 
