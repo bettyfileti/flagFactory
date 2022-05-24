@@ -41,11 +41,7 @@ for (stat of stats) {
     stat.initialize();
 }
 
-//Run the factory every second, if needed?
-// setInterval(function () {
-//     //this code runs every second 
-//     factory.runFactory();
-// }, 1000);
+document.body.addEventListener("click", checkConditions); //in sequences.js
 
 
 //--------------------------------------------------------------

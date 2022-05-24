@@ -43,12 +43,6 @@ class Factory {
             //     giveMeInfo();
             // }
         }
-
-        if (!factory.sellingFlags) {
-            makingFlagsIntro(); //Probably a better way to handle the sequencing
-        } else {
-            //sellingFlagsIntro();
-        }
     }
 
     makeFlagMachineAvailable() {
