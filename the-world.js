@@ -29,7 +29,11 @@ class TheWorld {
 
     addFlag() {
         let flagWorldStatusElement = document.getElementById("flags-world-status");
-        flagWorldStatusElement.innerHTML = "WAY TO SELL, MY FRIEND! Look at these flags, out in the world:"
+        if (factory.flagsSold === 1){
+            flagWorldStatusElement.innerHTML = "WAY TO SELL, MY FRIEND! " + factory.flagsSold + " beautiful flag out in the world:";
+        } else {
+            flagWorldStatusElement.innerHTML = "WAY TO SELL, MY FRIEND! " + factory.flagsSold + " beautiful flags out in the world:";
+        }
         this.flagCount++;
         let newFlag = document.createElement("pre");
 

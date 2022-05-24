@@ -44,9 +44,15 @@ function makingFlagsIntro() {
             buttons.find(x => x.id === 'sell-a-flag').makeVisible(true);
             stats.find(x => x.id === 'flags-sold-per-click').makeVisible(true);
             factory.sellingFlags = true;
+            sellingFlagsIntro();
         }
-    }
+    } 
+}
 
+function sellingFlagsIntro(){
+    if (factory.flagsSold === 5){
+        addingNarration(new Narration("flagFactory", "Making flags, making money. Making flags, making money."));
+    }
 }
 
 //--------------------------------------------------------------
