@@ -36,7 +36,6 @@ function makingFlagsIntro() {
 }
 
 function sellingFlagsIntro(){
-    console.log("here");
     if (factory.flagsSold === 5){
         addingNarration(new Narration("flagFactory", "Making flags, making money. Making flags, making money."));
     } else if (factory.flagsSold === 8) {
@@ -46,47 +45,9 @@ function sellingFlagsIntro(){
         factory.askMachineAvailable = true;
     } else if (factory.askMachineOn) {
         //Another criteria here for timing? $ perhaps?
-        addingNarration(new Narration("flagFactory", "Time to automate the making."));
-        buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
-        stats.find(x => x.id === 'flag-machine-per-sec').makeVisible(true);
-        factory.flagMachineAvailable = true;
+        // addingNarration(new Narration("flagFactory", "Time to automate the making."));
+        // buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
+        // stats.find(x => x.id === 'flag-machine-per-sec').makeVisible(true);
+        // factory.flagMachineAvailable = true;
     } 
 }
-
-//--------------------------------------------------------------
-// OLD AND CAN PROBABLY TRASH
-//--------------------------------------------------------------
-
-// function sellingFlagsIntro() {
-    // console.log("here");
-
-    // if (factory.flagsSold >= 4 && factory.flagsSold < 8) {
-    //     addingNarration(new Narration("flagFactory", "Sell, baby, sell."));
-    // } else if (factory.flagsSold >= 8 && factory.flagsSold < 13) {
-    //     addingNarration(new Narration("flagFactory", "I have a thought. What about..."));
-    // } else if (factory.flagsSold >= 13 && factory.flagsSold < 15) {
-    //     addingNarration(new Narration("flagFactory", "a selling machine? like an Automated-Shop-Keeper?"));
-    // } else if (factory.flagsSold >= 15 && factory.flagsSold < 20) {
-    //     addingNarration(new Narration("flagFactory", "Yes, an Automated-Shop-Keeper. Do you have enough money for one?"));
-    //     factory.makeASKMachineAvailable();
-    // }
-//}
-
-    //  else if (factory.flagMachineOn) {
-    //         let flagMachineRunTime = factory.flagsMade - factory.flagMachineStartTime;
-    //         if (flagMachineRunTime === 5) {
-    //             addingNarration(new Narration("flagFactory", "Yes. So much better."));
-    //         }
-    //         if (flagMachineRunTime === 15) {
-    //             addingNarration(new Narration("flagFactory", "Um...Did you notice our funds are getting a little low"));
-    //         }
-    //         if (flagMachineRunTime === 20) {
-    //             addingNarration(new Narration("flagFactory", "Seriously. We're running out of cash...and space in the warehouse."));
-    //         }
-    //         if (flagMachineRunTime === 25) {
-    //             addingNarration(new Narration("flagFactory", "Maybe we can sell some of these flags?"));
-    //             buttons.find(x => x.id === 'buy-a-flag-machine').updateLabel();
-    //             buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
-    //             factory.makeFlagMachineAvailable();
-    //         }
-    //     }

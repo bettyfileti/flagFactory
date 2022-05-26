@@ -55,6 +55,7 @@ class Money {
 
             //Can you afford to make a flag?
             if (this.availableFunds < flagCostToMake) {
+                addingNarration(new Narration("flagFactory", "It takes money to make money. Sell a flag or two."));
                 buttons.find(x => x.id === "make-a-flag").makeClickable(false);
             }
             //Can you afford to make a flag machine?
