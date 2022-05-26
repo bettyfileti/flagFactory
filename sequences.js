@@ -40,11 +40,17 @@ function sellingFlagsIntro(){
     if (factory.flagsSold === 5){
         addingNarration(new Narration("flagFactory", "Making flags, making money. Making flags, making money."));
     } else if (factory.flagsSold === 8) {
-        addingNarration(new Narration("flagFactory", "Time to automate."));
+        addingNarration(new Narration("flagFactory", "Time to automate this selling."));
+        buttons.find(x => x.id === 'buy-an-ask-machine').makeVisible(true);
+        stats.find(x => x.id === 'ask-machine-per-sec').makeVisible(true);
+        factory.askMachineAvailable = true;
+    } else if (factory.askMachineOn) {
+        //Another criteria here for timing? $ perhaps?
+        addingNarration(new Narration("flagFactory", "Time to automate the making."));
         buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
         stats.find(x => x.id === 'flag-machine-per-sec').makeVisible(true);
         factory.flagMachineAvailable = true;
-    }
+    } 
 }
 
 //--------------------------------------------------------------
