@@ -39,15 +39,24 @@ function sellingFlagsIntro(){
     if (factory.flagsSold === 5){
         addingNarration(new Narration("flagFactory", "Making flags, making money. Making flags, making money."));
     } else if (factory.flagsSold === 8) {
-        addingNarration(new Narration("flagFactory", "Time to automate this selling."));
-        buttons.find(x => x.id === 'buy-an-ask-machine').makeVisible(true);
-        stats.find(x => x.id === 'ask-machine-per-sec').makeVisible(true);
-        factory.askMachineAvailable = true;
-    } else if (factory.askMachineOn) {
-        //Another criteria here for timing? $ perhaps?
-        // addingNarration(new Narration("flagFactory", "Time to automate the making."));
-        // buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
-        // stats.find(x => x.id === 'flag-machine-per-sec').makeVisible(true);
-        // factory.flagMachineAvailable = true;
+        addingNarration(new Narration("flagFactory", "OK. Time to automate this selling nonsense."));
+        buttons.find(x => x.id === 'buy-an-selling-machine').makeVisible(true);
+        stats.find(x => x.id === 'selling-machine-per-sec').makeVisible(true);
+        factory.sellingMachineAvailable = true;
+    } else if (factory.sellingMachinesBought == 1){
+        addingNarration(new Narration("flagFactory", "Making could use an upgrade."));
+        flagsPerClick++;
+        buttons.find(x => x.id === 'make-a-flag').updateLabel();
+        stats.find(x => x.id === 'flags-made-per-click').update();
+    } else if ((factory.sellingMachinesBought == 2) && (flagsPerClick === 1)) {
+        addingNarration(new Narration("flagFactory", "Making, making, making. Some things machines do better."));
+        buttons.find(x => x.id === 'buy-a-making-machine').makeVisible(true);
+        stats.find(x => x.id === 'making-machine-per-sec').makeVisible(true);
+        factory.makingMachineAvailable = true;
+
+        // addingNarration(new Narration("flagFactory", "Making could use an upgrade."));
+        // flagsPerClick++;
+        // buttons.find(x => x.id === 'make-a-flag').updateLabel();
+        // stats.find(x => x.id === 'flags-made-per-click').update();
     } 
 }

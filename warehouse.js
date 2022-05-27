@@ -31,7 +31,7 @@ class Warehouse {
             this.isEmpty = true;
             addingNarration(new Narration("flagFactory", "Can't sell what you don't have, buddy. Make a flag."));
             buttons.find(x => x.id === 'sell-a-flag').makeClickable(false);
-            //Turn off ASK machine
+            //Turn off Selling machine
         }
     }
 }

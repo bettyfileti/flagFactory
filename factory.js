@@ -2,14 +2,14 @@ class Factory {
     constructor() {
         this.flagsMade,
             this.flagsSold,
-            this.flagMachineAvailable = false,
-            this.flagMachineOn = false,
-            this.flagMachinesBought = 0,
+            this.makingMachineAvailable = false,
+            this.makingMachineOn = false,
+            this.makingMachinesBought = 0,
             this.sellingFlags = false,
-            this.askMachineAvailable = false,
-            this.askMachineOn = false,
-            this.askMachinesBought = 0,
-            this.flagMachineStartTime
+            this.sellingMachineAvailable = false,
+            this.sellingMachineOn = false,
+            this.sellingMachinesBought = 0,
+            this.makingMachineStartTime
     }
 
     initialize() {
@@ -25,57 +25,64 @@ class Factory {
 
     makeAFlag() {
         //Use "factory."" instead of "this." so it affects the global values, instead of the trigger button.
-        let makingStat = stats.find(x => x.id === "flags-made-per-click");
-        if (makingStat.isHidden) {
-            makingStat.makeVisible();
+
+        for (let i = 0; i < flagsPerClick; i++) {
+            let makingStat = stats.find(x => x.id === "flags-made-per-click");
+            if (makingStat.isHidden) {
+                makingStat.makeVisible();
+            }
+
+            if (warehouse.isEmpty && this.sellingMachineOn) {
+                console.log("empty warehouse + sellingMachineOn, but trying to make flags");
+            } else {
+                factory.flagsMade += 1;
+
+                warehouse.addFlag();
+                money.spendingMoney(flagCostToMake);
+
+                //TURN THIS ON
+                if (factory.flagsMade != warehouse.flagCount + factory.flagsSold) {
+                    console.log("//------");
+                    console.log("Something is not adding up");
+                    giveMeInfo();
+                }
+            }
         }
 
-        console.log()
-
-        if (warehouse.isEmpty && this.askMachineOn) {
-            console.log("empty warehouse + askMachineOn, but trying to make flags");
-        } else {
-            factory.flagsMade += 1;
-
-            warehouse.addFlag();
-            money.spendingMoney(flagCostToMake);
-            //TURN THIS ON
-            // if (factory.flagsMade != warehouse.flagCount + factory.flagsSold) {
-            //     console.log("//------");
-            //     console.log("Something is not adding up");
-            //     giveMeInfo();
-            // }
-        }
     }
 
-    makeFlagMachineAvailable() {
-        console.log("Making Flag Machine Available");
-        if (money.availableFunds >= flagMachineCostToMake) {
-            buttons.find(x => x.id === 'buy-a-flag-machine').makeVisible(true);
-            buttons.find(x => x.id === 'buy-a-flag-machine').makeClickable(true);
+    makemakingMachineAvailable() {
+        console.log("Making Making Machine Available");
+        if (money.availableFunds >= makingMachineCostToMake) {
+            buttons.find(x => x.id === 'buy-a-making-machine').makeVisible(true);
+            buttons.find(x => x.id === 'buy-a-making-machine').makeClickable(true);
         } else {
-            buttons.find(x => x.id === 'buy-a-flag-machine').makeClickable(false);
+            buttons.find(x => x.id === 'buy-a-making-machine').makeClickable(false);
         }
-        this.flagMachineAvailable = true;
+        this.makingMachineAvailable = true;
     }
 
-    buyAFlagMachine() {
-        console.log("Buying a Flag Machine");
-        factory.flagMachinesBought++;
-        money.spendingMoney(flagMachineCostToMake);
-        factory.flagMachineOn = true;
-        factory.flagMachineStartTime = this.flagsMade;
+    buyAmakingMachine() {
+        console.log("Buying a Making Machine");
+        if (factory.makingMachinesBought === 0) {
+            factory.makingMachinesBought = factory.sellingMachinesBought; //equalize the making and the selling
+        } else {
+            factory.makingMachinesBought++;
+        }
+        money.spendingMoney(makingMachineCostToMake);
+        factory.makingMachineOn = true;
+        factory.makingMachineStartTime = this.flagsMade;
         setInterval(function () {
             factory.makeAFlag();
-        }, 1000 / factory.flagMachinesBought); //Dividing it here helps to speed it up.
+        }, 900 / factory.makingMachinesBought); //Dividing it here to control rate. Try a slightly lower interval than selling.
 
-        addingNarration(new Narration("flagFactory", factory.flagMachinesBought + " flag every second. So dope."));
-        stats.find(x => x.id === "flag-machine-per-sec").makeVisible();
+        addingNarration(new Narration("flagFactory", factory.makingMachinesBought + " flag every second. So dope."));
+        stats.find(x => x.id === "making-machine-per-sec").makeVisible();
 
         //Upgrade mechanism
-        if (factory.flagMachinesBought > 0) {
-            flagMachineCostToMake = upgradeMachine(flagMachineCostToMake, factory.flagMachinesBought, flagMachineRate); //(currentCost, numberOfUpgrades, upgradeRate);
-            buttons.find(x => x.id === 'buy-a-flag-machine').updateLabel();
+        if (factory.makingMachinesBought > 0) {
+            makingMachineCostToMake = upgradeMachine(makingMachineCostToMake, factory.makingMachinesBought, makingMachineRate); //(currentCost, numberOfUpgrades, upgradeRate);
+            buttons.find(x => x.id === 'buy-a-making-machine').updateLabel();
         }
     }
 
@@ -95,13 +102,13 @@ class Factory {
         }
     }
 
-    makeASKMachineAvailable() {
+    makesellingMachineAvailable() {
 
-        if (!factory.askMachineAvailable) {
-            console.log("Making ASK Machine Available");
-            buttons.find(x => x.id === "buy-an-ask-machine").makeVisible(true);
-            stats.find(x => x.id === "ask-machine-per-sec").makeVisible();
-            factory.askMachineAvailable = true;
+        if (!factory.sellingMachineAvailable) {
+            console.log("Making Selling Machine Available");
+            buttons.find(x => x.id === "buy-an-selling-machine").makeVisible(true);
+            stats.find(x => x.id === "selling-machine-per-sec").makeVisible();
+            factory.sellingMachineAvailable = true;
         } else {
 
         }
@@ -109,35 +116,39 @@ class Factory {
 
     }
 
-    buyAskMachine() {
-        console.log("Buying an ASK Machine");
-        factory.askMachineOn = true;
-        money.spendingMoney(askMachineCostToMake);
-        factory.askMachinesBought++;
+    buysellingMachine() {
+        console.log("Buying an Selling Machine");
+        factory.sellingMachineOn = true;
+        money.spendingMoney(sellingMachineCostToMake);
+        factory.sellingMachinesBought++;
 
         setInterval(function () {
             //1000 runs every second 
             factory.sellAFlag();
-        }, 1000 / factory.askMachinesBought);
+        }, 1000 / factory.sellingMachinesBought);
 
         // buildWarehouseShelves();
-        addingNarration(new Narration("flagFactory", "That baby is selling 1 flags every second."));
-        buttons.find(x => x.id === "buy-an-ask-machine").makeClickable(false);
-        stats.find(x => x.id === "ask-machine-per-sec").makeVisible();
+        if (factory.sellingMachinesBought === 1) {
+            addingNarration(new Narration("flagFactory", "That baby is selling " + factory.sellingMachinesBought + " flag every second."));
+        } else {
+            addingNarration(new Narration("flagFactory", "That baby is selling " + factory.sellingMachinesBought + " flags every second."));
+        }
+        buttons.find(x => x.id === "buy-an-selling-machine").makeClickable(false);
+        stats.find(x => x.id === "selling-machine-per-sec").makeVisible();
 
-        if (factory.askMachinesBought > 0){
-            askMachineCostToMake = upgradeMachine(askMachineCostToMake, factory.askMachinesBought, askMachineRate); //(currentCost, numberOfUpgrades, upgradeRate);
-            buttons.find(x => x.id === "buy-an-ask-machine").updateLabel();
+        if (factory.sellingMachinesBought > 0) {
+            sellingMachineCostToMake = upgradeMachine(sellingMachineCostToMake, factory.sellingMachinesBought, sellingMachineRate); //(currentCost, numberOfUpgrades, upgradeRate);
+            buttons.find(x => x.id === "buy-an-selling-machine").updateLabel();
         }
 
-    }   
+    }
 
 
     //------
 
     runFactory() {
         //console.log("factory is up and running");
-        if (factory.askMachineAvailable) {
+        if (factory.sellingMachineAvailable) {
 
         }
     }
@@ -146,12 +157,12 @@ class Factory {
 }
 
 
-function upgradeMachine(currentCost, numberOfUpgrades, upgradeRate, machineButton){
+function upgradeMachine(currentCost, numberOfUpgrades, upgradeRate) {
+    numberOfUpgrades = numberOfUpgrades + 1;
     console.log("currentCost:", currentCost);
     console.log("numberOfUpgrades:", numberOfUpgrades);
     console.log("upgradeRate:", upgradeRate);
-    console.log("machineButton:", machineButton);
-    let newCost = currentCost * (1 + upgradeRate) ** numberOfUpgrades;
+    let newCost = currentCost * Math.pow((1 + upgradeRate), numberOfUpgrades);
     console.log("newCost:", newCost);
     return newCost;
 }

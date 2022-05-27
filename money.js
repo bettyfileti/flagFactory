@@ -34,12 +34,12 @@ class Money {
                 factory.makeAFlagAvailable(true);
             } 
             
-            if (factory.flagMachineAvailable && this.availableFunds >= flagMachineCostToMake){
-                buttons.find(x => x.id === "buy-a-flag-machine").makeClickable(true);
+            if (factory.makingMachineAvailable && this.availableFunds >= makingMachineCostToMake){
+                buttons.find(x => x.id === "buy-a-making-machine").makeClickable(true);
             }
 
-            if (factory.askMachineAvailable && this.availableFunds >= askMachineCostToMake){
-                buttons.find(x => x.id === "buy-an-ask-machine").makeClickable(true);
+            if (factory.sellingMachineAvailable && this.availableFunds >= sellingMachineCostToMake){
+                buttons.find(x => x.id === "buy-an-selling-machine").makeClickable(true);
             }
 
         } else {
@@ -58,18 +58,18 @@ class Money {
                 addingNarration(new Narration("flagFactory", "It takes money to make money. Sell a flag or two."));
                 buttons.find(x => x.id === "make-a-flag").makeClickable(false);
             }
-            //Can you afford to make a flag machine?
-            if (this.availableFunds < flagMachineCostToMake) {
-                buttons.find(x => x.id === "buy-a-flag-machine").makeClickable(false);
+            //Can you afford to make a Making Machine?
+            if (this.availableFunds < makingMachineCostToMake) {
+                buttons.find(x => x.id === "buy-a-making-machine").makeClickable(false);
 
-                if (factory.flagMachineAvailable) {
+                if (factory.makingMachineAvailable) {
                     this.youNeedMoney();
                 }
             }
 
-            //Can you afford to make an ASK machine?
-            if (this.availableFunds < askMachineCostToMake) {
-                buttons.find(x => x.id === "buy-an-ask-machine").makeClickable(false);
+            //Can you afford to make an Selling machine?
+            if (this.availableFunds < sellingMachineCostToMake) {
+                buttons.find(x => x.id === "buy-an-selling-machine").makeClickable(false);
             }
 
             //Can you afford an upgrade?

@@ -24,12 +24,12 @@ class Stat {
             this.value.innerHTML = warehouse.flagCount;
         } else if (this.id === "flags-made-per-click") {
             this.value.innerHTML = flagsPerClick;
-        } else if (this.id === "flag-machine-per-sec"){
-            this.value.innerHTML = factory.flagMachinesBought;
+        } else if (this.id === "making-machine-per-sec"){
+            this.value.innerHTML = factory.makingMachinesBought;
         } else if (this.id === "flags-sold-per-click"){
             this.value.innerHTML = flagsSoldPerClick;
-        } else if (this.id === "ask-machine-per-sec"){
-            this.value.innerHTML = factory.askMachinesBought;
+        } else if (this.id === "selling-machine-per-sec"){
+            this.value.innerHTML = factory.sellingMachinesBought;
         }
         
     }

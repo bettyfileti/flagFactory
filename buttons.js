@@ -57,13 +57,27 @@ class Button {
 
     updateLabel() {
         if (this.id === "make-a-flag"){
-            this.btn.innerHTML = this.label + " (-$" + convertToMoney(flagCostToMake) + ")";
-        } else if (this.id === "buy-a-flag-machine"){
-            this.btn.innerHTML = this.label +  " (-$" + convertToMoney(flagMachineCostToMake) + ")";
+            if (flagsPerClick > 1){
+                if (money.availableFunds >= flagsPerClick * flagCostToMake){
+                    this.btn.innerHTML = "Make " + flagsPerClick + " Flags" + " (-$" + (convertToMoney(flagsPerClick * flagCostToMake)) + ")";
+                } else {
+                    console.log("Not enough money for the action you want.")
+                }
+            } else {
+                this.btn.innerHTML = this.label + " (-$" + convertToMoney(flagCostToMake) + ")";
+            }
+        } else if (this.id === "buy-a-making-machine"){
+            if (factory.makingMachinesBought > 0){
+               this.label = "Upgrade Making Machine"
+            }
+            this.btn.innerHTML = this.label +  " (-$" + convertToMoney(makingMachineCostToMake) + ")";
         } else if (this.id === "sell-a-flag"){
             this.btn.innerHTML = this.label + " (+$" + convertToMoney(flagPrice) + ")";
-        } else if (this.id === "buy-an-ask-machine"){
-            this.btn.innerHTML = this.label + " (-$" + convertToMoney(askMachineCostToMake) + ")";
+        } else if (this.id === "buy-an-selling-machine"){
+            if (factory.sellingMachinesBought > 0){
+                this.label = "Upgrade Selling Machine"
+             }
+            this.btn.innerHTML = this.label + " (-$" + convertToMoney(sellingMachineCostToMake) + ")";
         }
     }
 
